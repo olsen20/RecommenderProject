@@ -1,10 +1,11 @@
 import './App.css'
+import RecommenderPage from './pages/RecommenderPage'
 
 function App() {
 
   return (
     <>
-      <h1>Recommender Project</h1>
+      <RecommenderPage />
     </>
   )
 }
