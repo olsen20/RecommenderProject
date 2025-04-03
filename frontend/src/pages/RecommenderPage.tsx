@@ -29,38 +29,10 @@ const RecommenderPage = () => {
         <h1 className="mb-4 text-center">Recommender Project</h1>
   
         <form onSubmit={handleSubmit} className="mb-5">
-          <div className="text-center mb-3">
-            <div className="btn-group" role="group" aria-label="Search Type">
-              <input
-                type="radio"
-                className="btn-check"
-                name="searchType"
-                id="userSearch"
-                checked={searchType === 'user'}
-                onChange={() => setSearchType('user')}
-              />
-              <label className="btn btn-outline-primary" htmlFor="userSearch">
-                Search by User ID
-              </label>
-  
-              <input
-                type="radio"
-                className="btn-check"
-                name="searchType"
-                id="itemSearch"
-                checked={searchType === 'item'}
-                onChange={() => setSearchType('item')}
-              />
-              <label className="btn btn-outline-primary" htmlFor="itemSearch">
-                Search by Item ID
-              </label>
-            </div>
-          </div>
-  
           <div className="row justify-content-center">
             <div className="col-md-6">
               <label htmlFor="userId" className="form-label">
-                Enter {searchType === 'user' ? 'User' : 'Item'} ID:
+                Enter Item ID:
               </label>
               <input
                 type="text"
