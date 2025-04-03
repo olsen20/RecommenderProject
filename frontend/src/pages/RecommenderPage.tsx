@@ -14,8 +14,8 @@ const RecommenderPage = () => {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
     
-      setCollabResults(searchType === 'item' ? collabResults : []);
-      setContentResults(searchType === 'item' ? contentResults : []);
+      setCollabResults(searchType === 'user' ? collabResults : []);
+      setContentResults(searchType === 'user' ? contentResults : []);
       setAzureResults(searchType === 'item' ? azureResults : []);
     
       if (searchType === 'user') {
