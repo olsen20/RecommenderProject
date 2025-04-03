@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "RecommenderProject.API.Controllers.AzureRecommenderController",
+    "Method": "GetRecommendations",
+    "RelativePath": "api/AzureRecommender",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "RecommenderProject.API.Controllers.AzureRecommenderController\u002BUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "RecommenderProject.API.Controllers.ContentController",
     "Method": "GetCollaborativeRecommendations",
     "RelativePath": "api/Content/collaborative/{itemId}",

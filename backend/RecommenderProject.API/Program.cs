@@ -3,6 +3,7 @@ using RecommenderProject.API.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<CSVRecommendations>();
 builder.Services.AddScoped<AzureML>();
 

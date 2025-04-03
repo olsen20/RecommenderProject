@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/AzureRecommender": {
+      "post": {
+        "tags": [
+          "AzureRecommender"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Content/collaborative/{itemId}": {
       "get": {
         "tags": [
@@ -171,6 +202,16 @@
             "items": {
               "type": "string"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
             "nullable": true
           }
         },
