@@ -11,18 +11,47 @@ const RecommenderPage = () => {
       setUserId(e.target.value);
     };
   
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-  
-      // Sample pseudo data
-      const fakeCollab = ['C101', 'C205', 'C312', 'C487', 'C509'];
-      const fakeContent = ['T102', 'T215', 'T318', 'T403', 'T555'];
-      const fakeAzure = ['A103', 'A204', 'A319', 'A499', 'A622'];
-  
-      setCollabResults(fakeCollab);
-      setContentResults(fakeContent);
-      setAzureResults(fakeAzure);
+    
+      setCollabResults(searchType === 'item' ? collabResults : []);
+      setContentResults(searchType === 'item' ? contentResults : []);
+      setAzureResults(searchType === 'item' ? azureResults : []);
+    
+      if (searchType === 'user') {
+        try {
+          const response = await fetch('https://localhost:5000/api/AzureRecommender', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: userId }),
+          });
+    
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+    
+          const data = await response.json();
+          const rawResult = data.Results.WebServiceOutput0[0];
+    
+          const extractedResults = [
+            rawResult["Recommended Item 1"],
+            rawResult["Recommended Item 2"],
+            rawResult["Recommended Item 3"],
+            rawResult["Recommended Item 4"],
+            rawResult["Recommended Item 5"]
+          ];
+    
+          setAzureResults(extractedResults);
+        } catch (error) {
+          console.error('Azure ML API call failed:', error);
+          setAzureResults([]);
+        }
+      } else {
+        setAzureResults([]);
+      }
     };
+    
+    
   
     return (
       <div className="container mt-5">
