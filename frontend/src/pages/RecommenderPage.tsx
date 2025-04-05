@@ -49,6 +49,28 @@ const RecommenderPage = () => {
       } else {
         setAzureResults([]);
       }
+
+      if (searchType === 'item') {
+        try {
+          const collabRes = await fetch(`https://localhost:5000/api/content/collaborative/${userId}`);
+          if (!collabRes.ok) throw new Error("Collaborative filtering failed.");
+          const collabData = await collabRes.json();
+          setCollabResults(collabData);
+        } catch (err) {
+          console.error("Collaborative filtering error:", err);
+          setCollabResults([]);
+        }
+    
+        try {
+          const contentRes = await fetch(`https://localhost:5000/api/content/content/${userId}`);
+          if (!contentRes.ok) throw new Error("Content filtering failed.");
+          const contentData = await contentRes.json();
+          setContentResults(contentData);
+        } catch (err) {
+          console.error("Content filtering error:", err);
+          setContentResults([]);
+        }
+      }
     };
     
     
